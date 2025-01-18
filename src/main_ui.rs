@@ -60,9 +60,9 @@ impl eframe::App for QApp {
     fn update(&mut self, ctx: &egui::Context, _: &mut eframe::Frame) {
         egui::SidePanel::right("info").show(ctx, |ui| {
             ui.heading("Info");
-            ui.add(egui::Slider::new(&mut self.i, 0..=8).text("Satır"));
-            ui.add(egui::Slider::new(&mut self.j, 0..=8).text("Sütun"));
-            if ui.button("Hesapla").clicked() {
+            ui.add(egui::Slider::new(&mut self.i, 0..=8).text("Row"));
+            ui.add(egui::Slider::new(&mut self.j, 0..=8).text("Column"));
+            if ui.button("Calculute 1 node").clicked() {
                 self.tmp.a = self.checker.check_all(&self.board, self.i, self.j);
                 self.tmp.d = self.checker.check_diagonal(&self.board, self.i, self.j);
                 self.tmp.hw = self.checker.checek_hw2(&self.board, self.i, self.j);
@@ -72,7 +72,7 @@ impl eframe::App for QApp {
                 "a: {} d:{} hw:{}",
                 self.tmp.a, self.tmp.d, self.tmp.hw
             ));
-            if ui.button("Karıştır").clicked() {
+            if ui.button("Shuffle").clicked() {
                 self.shuffle();
             }
             ui.separator();

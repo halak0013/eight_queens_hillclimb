@@ -8,20 +8,20 @@ impl Checker {
 
     pub fn check_diagonal(&self, board: &Vec<Vec<bool>>, i: usize, j: usize) -> usize {
         const DIRECTION: [(i32, i32); 4] = [
-            (-1, -1), // Sol üst
-            (-1, 1),  // Sağ üst
-            (1, -1),  // Sol alt
-            (1, 1),   // Sağ alt
+            (-1, -1), // Sol alt
+            (-1, 1),  // sol üst
+            (1, -1),  // Sağ alt
+            (1, 1),   // Sağ üst
         ];
         let size = board.len() as i32;
         let mut conflicts: usize = 0;
 
-        for &(row_delta, col_delta) in &DIRECTION {
+        for &(row_dir, col_dir) in &DIRECTION {
             let (mut row, mut col) = (i as i32, j as i32);
 
             loop {
-                row += row_delta;
-                col += col_delta;
+                row += row_dir;
+                col += col_dir;
 
                 if row >= 0 && row < size && col >= 0 && col < size {
                     if board[row as usize][col as usize] {
